@@ -1,0 +1,20 @@
+{
+    "name": "wp-react-cli",
+    "version": "0.1.0",
+    "description": "A CLI tool to create React apps with Webpack template",
+    "main": "index.js",
+    "scripts": {},
+    "dependencies": {
+      "chalk": "^5.4.1",
+      "commander": "^13.1.0",
+      "fs-extra": "^11.3.0",
+      "inquirer": "^12.4.1"
+    },
+    "bin": {
+      "wp-react-cli": "scripts/index.js"
+    },
+    "type": "module",
+    "author": "prateekjena",
+    "license": "ISC"
+  }
+  

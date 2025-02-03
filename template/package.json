@@ -1,6 +1,6 @@
 {
   "name": "wp-react-cli",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "a cli tool to create react apps",
   "main": "index.js",
   "scripts": {
@@ -8,13 +8,8 @@
     "build": "webpack build --config ./webpack/webpack.prod.js"
   },
   "dependencies": {
-    "chalk": "^5.4.1",
-    "commander": "^13.1.0",
-    "fs-extra": "^11.3.0",
-    "inquirer": "^12.4.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "wp-react-cli": "^1.0.6"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.26.7",
@@ -36,9 +31,6 @@
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0",
     "webpack-merge": "^6.0.1"
-  },
-  "bin": {
-    "wp-react-cli": "../scripts/index.js"
   },
   "type": "module",
   "author": "prateekjena",

@@ -1,10 +1,14 @@
 #!/usr/bin/env node
 
-const { program } = require('commander');
-const inquirer = require('inquirer');
-const fs = require('fs-extra');
-const path = require('path');
-const chalk = require('chalk');
+import { program } from 'commander';
+import inquirer from 'inquirer';
+import fs from 'fs-extra';
+import path from 'path';
+import chalk from 'chalk';
+import { fileURLToPath } from 'url';
+
+// Get the current directory of the script
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Default action when no command is provided
 program
@@ -34,8 +38,9 @@ program
     console.log(chalk.blue(`Creating project in ${projectPath}...`));
     fs.mkdirSync(projectPath);
 
+    console.log(__dirname)
     // Copy template files (webpack-react template, for example)
-    const templateDir = path.join(__dirname, 'template'); // Assuming you have a "template" directory
+    const templateDir = path.join(__dirname, '../template'); // Assuming you have a "template" directory
     if (!fs.existsSync(templateDir)) {
       console.log(chalk.red(`Template ${options.template} not found.`));
       return;
@@ -45,9 +50,9 @@ program
 
     // Update the package.json with dynamic info (like description)
     const packageJsonPath = path.join(projectPath, 'package.json');
-    const packageJson = require(packageJsonPath);
+    const packageJson = await fs.readJson(packageJsonPath);
     packageJson.description = answers.projectDescription;
-    fs.writeJsonSync(packageJsonPath, packageJson, { spaces: 2 });
+    await fs.writeJson(packageJsonPath, packageJson, { spaces: 2 });
 
     console.log(chalk.green('Project created successfully!'));
     console.log(`Run \`cd ${projectName}\` to enter the project folder.`);
