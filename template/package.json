@@ -1,6 +1,6 @@
 {
   "name": "wp-react-cli",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "a cli tool to create react apps",
   "main": "index.js",
   "scripts": {
@@ -32,7 +32,6 @@
     "webpack-dev-server": "^5.2.0",
     "webpack-merge": "^6.0.1"
   },
-  "type": "module",
   "author": "prateekjena",
   "license": "ISC"
 }
