@@ -1,9 +1,34 @@
-usage
+# wp-react-cli 🚀  
+A CLI tool to quickly scaffold React apps with Webpack.  
 
-npm i -g wp-react-cli
+## Installation 📦  
+Install globally via npm:  
+```sh
+npm install -g wp-react-cli
 
-then
+```
+## Usage
+```sh
+wp-react-cli myProject
 
-wp-react-cli <projectName>
+```
 
-post installation run npm start, the react app will start at 4000
+This will generate a minimal React setup inside the myProject folder.
+
+## Start the Development Server 🚀
+
+After installation, navigate to your project and start the server:
+
+```sh
+cd myProject  
+npm start  
+
+```
+
+Your React app will be available at:
+📍 http://localhost:4000
+
+## Features ✨
+✅ Lightweight Webpack setup
+✅ Minimal dependencies for faster builds
+✅ Automatic project structure generation
