@@ -12,11 +12,13 @@ import { exec } from 'child_process';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Default action when no command is provided
+let appName = ''
 program
   .arguments("<projectName>")
   .description("Create a new React project with Webpack template")
   .action(async (projectName, options) => {
     const projectPath = path.join(process.cwd(), projectName);
+    appName = projectName
 
     // Check if directory exists
     if (fs.existsSync(projectPath)) {
@@ -56,14 +58,14 @@ program
     const packageJsonPath = path.join(projectPath, "package.json");
     const packageJson = await fs.readJson(packageJsonPath);
     packageJson.description = answers.projectDescription;
+    packageJson.name = appName;
     await fs.writeJson(packageJsonPath, packageJson, { spaces: 2 });
 
     console.log(chalk.green("Project created successfully!"));
     console.log(`Run \`cd ${projectName}\` to enter the project folder.`);
 
-    // Run `npm install` in the new project folder
     console.log(chalk.blue("Installing dependencies..."));
-    exec("npm install --loglevel verbose", { cwd: projectPath }, (error, stdout, stderr) => {
+    exec("npm i", { cwd: projectPath }, (error, stdout, stderr) => {
       if (error) {
         console.error(
           chalk.red(`Error installing dependencies: ${error.message}`)
@@ -75,8 +77,8 @@ program
         return;
       }
       console.log(chalk.green("Dependencies installed successfully!"));
-      console.log(`Run \`cd ${projectName}\` to enter the project folder.`);
-      console.log("start the app with `npm start`.");
+      console.log("Run" +chalk.green(`\`cd ${projectName}\``) + "to enter the project folder.");
+      console.log("start the app with" + chalk.green(" `npm start`."));
     });
   });
 
