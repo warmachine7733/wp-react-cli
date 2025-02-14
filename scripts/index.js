@@ -15,11 +15,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 program
   .arguments("<projectName>")
   .description("Create a new React project with Webpack template")
-  .option(
-    "-t, --template <template>",
-    "Template to use (default is template)",
-    "template"
-  )
   .action(async (projectName, options) => {
     const projectPath = path.join(process.cwd(), projectName);
 
@@ -33,7 +28,7 @@ program
       return;
     }
 
-    // Ask for more details if needed
+    // description
     const answers = await inquirer.prompt([
       {
         type: "input",
@@ -65,13 +60,10 @@ program
 
     console.log(chalk.green("Project created successfully!"));
     console.log(`Run \`cd ${projectName}\` to enter the project folder.`);
-    console.log(
-      "Then install dependencies with `npm install` and start the app with `npm start`."
-    );
 
     // Run `npm install` in the new project folder
     console.log(chalk.blue("Installing dependencies..."));
-    exec("npm install", { cwd: projectPath }, (error, stdout, stderr) => {
+    exec("npm install --loglevel verbose", { cwd: projectPath }, (error, stdout, stderr) => {
       if (error) {
         console.error(
           chalk.red(`Error installing dependencies: ${error.message}`)
@@ -84,7 +76,7 @@ program
       }
       console.log(chalk.green("Dependencies installed successfully!"));
       console.log(`Run \`cd ${projectName}\` to enter the project folder.`);
-      console.log("Then start the app with `npm start`.");
+      console.log("start the app with `npm start`.");
     });
   });
 
