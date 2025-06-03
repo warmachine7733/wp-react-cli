@@ -5,11 +5,16 @@ module.exports = merge(common, {
   entry: "./src/index.tsx",
   mode: "development",
   devServer: {
-    port: 4000,
     historyApiFallback: true,
+    hot: true,
+    port: 4000,
+    server: 'http',
+    static: {
+      directory: './public',
+    }
   },
   output: {
-    publicPath: "http://localhost:4000/",
+    publicPath: "/",
     filename: "main.js",
   },
 });
